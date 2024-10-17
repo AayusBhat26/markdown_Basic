@@ -45,21 +45,20 @@ Make sure you have the following installed on your local development environment
 ### Installation
 
 1. Clone the repository:
-   ```bash
+   ```
    git clone https://github.com/your-username/markdown-previewer.git
+   ```
 Navigate to the project directory:
-bash
-Copy code
-cd markdown-previewer
+
+
+```cd markdown-previewer```
+
 Install the dependencies:
-bash
-Copy code
+
 npm install
 Running the App
 To start the development server, run:
 
-bash
-Copy code
 npm run dev
 Then, open http://localhost:3000 in your browser to see the live app.
 
