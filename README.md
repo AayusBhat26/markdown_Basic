@@ -48,25 +48,21 @@ Make sure you have the following installed on your local development environment
    ```
    git clone https://github.com/your-username/markdown-previewer.git
    ```
-Navigate to the project directory:
+2. Navigate to the project directory:
 
+```
+cd markdown-previewer
+```
 
-```cd markdown-previewer```
-
-Install the dependencies:
+3. Install the dependencies:
 
 npm install
 Running the App
-To start the development server, run:
 
+4. To start the development server, run:
 npm run dev
 Then, open http://localhost:3000 in your browser to see the live app.
 
-Build for Production
+5. Build for Production
 To create a production build:
-
-bash
-Copy code
 npm run build
-Keyboard Shortcuts
-Toggle Sidebar: Use Ctrl + B to show or hide the sidebar.
