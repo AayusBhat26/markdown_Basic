@@ -5,7 +5,11 @@ import MainSection from "./MainSection";
 import Sidebar from "./Sidebar";
 
 function App() {
-  const [pages, setPages] = useState(JSON.parse(localStorage.pages) || []);
+  const [pages, setPages] = useState(() => {
+    const savedPages = localStorage.getItem("pages");
+    return savedPages ? JSON.parse(savedPages) : [];
+  });
+  
   const [activePage, setActivePage] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);  // State for sidebar visibility
 
