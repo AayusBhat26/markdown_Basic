@@ -7,7 +7,7 @@ import Sidebar from "./components/Sidebar";
 import Login  from "./auth/Login";
 import Register from "./auth/Register"; // Import the Register component
 import PrivateRoute from "./auth/PrivateRoute"; // Import PrivateRoute for route protection
-import axios from "axios";
+
 function App() {
   const [pages, setPages] = useState(() => {
     const savedPages = localStorage.getItem("pages");
