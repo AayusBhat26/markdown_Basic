@@ -3,7 +3,26 @@
 * {
   box-sizing: border-box;
 }
-
+.smallh1{
+  font-size:20px;
+  margin-top:100px;
+  /* margin-right:16px; */
+  text-align:center;
+}
+.logoutButton{
+  width:100%;
+  max-width:50%;
+  margin-left:27%;
+}
+.buttonSidebar{
+  width:50%;
+}
+.sidebar-header{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 body::-webkit-scrollbar,
 .sidebar::-webkit-scrollbar {
   display: none; /* Hide scrollbars */

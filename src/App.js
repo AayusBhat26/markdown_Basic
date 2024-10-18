@@ -7,28 +7,25 @@ import Sidebar from "./components/Sidebar";
 import Login  from "./auth/Login";
 import Register from "./auth/Register"; // Import the Register component
 import PrivateRoute from "./auth/PrivateRoute"; // Import PrivateRoute for route protection
-
+import axios from "axios";
 function App() {
   const [pages, setPages] = useState(() => {
     const savedPages = localStorage.getItem("pages");
     return savedPages ? JSON.parse(savedPages) : [];
   });
-
   const [activePage, setActivePage] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);  // State for sidebar visibility
-
   useEffect(() => {
     localStorage.setItem("pages", JSON.stringify(pages));
+    // pages change honge toh setitem kr rha hai 
   }, [pages]);
-
-  // Keyboard shortcut to toggle sidebar visibility
+  
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.ctrlKey && event.key === 'b') {  // Example: Ctrl + B to toggle sidebar
         setShowSidebar((prevState) => !prevState);
       }
     };
-
     window.addEventListener("keydown", handleKeyPress);
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
@@ -43,6 +40,11 @@ function App() {
       lastModified: Date.now(),
     };
     setPages([newNode, ...pages]);
+    try {
+      // new page
+    } catch (error) {
+      
+    }
   };
 
   const deletePage = (id) => {

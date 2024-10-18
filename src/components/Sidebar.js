@@ -2,11 +2,17 @@ import React from "react";
 
 const Sidebar = ({ pages, newPage, deletePage, activePage, setActivePage }) => {
     const sortedPages = pages.sort((a,b)=>b.lastModified-a.lastModified);
+    const logoutFunction = ()=>{
+      if(localStorage.getItem('token')){
+        localStorage.removeItem('token');
+        window.location.reload();
+      }
+    }
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h1>Pages</h1>
-        <button onClick={newPage}>Add</button>
+        <h1 className="smallh1">Pages</h1>
+        <button onClick={newPage} className="buttonSidebar">Add</button>
       </div>
       {/* list of markdown pages */}
       <div className="sidebar-pages ">
@@ -24,6 +30,7 @@ const Sidebar = ({ pages, newPage, deletePage, activePage, setActivePage }) => {
             })}</small>
           </div>
         ))}
+        <button className="logoutButton" onClick={()=>logoutFunction()}>Logout</button>
       </div>
     </div>
   );
