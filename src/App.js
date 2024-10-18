@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import uuid from "react-uuid";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import MainSection from "./MainSection";
-import Sidebar from "./Sidebar";
+import MainSection from "./components/MainSection";
+import Sidebar from "./components/Sidebar";
+import Login  from "./auth/Login";
+import Register from "./auth/Register"; // Import the Register component
+import PrivateRoute from "./auth/PrivateRoute"; // Import PrivateRoute for route protection
 
 function App() {
   const [pages, setPages] = useState(() => {
     const savedPages = localStorage.getItem("pages");
     return savedPages ? JSON.parse(savedPages) : [];
   });
-  
+
   const [activePage, setActivePage] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);  // State for sidebar visibility
 
@@ -60,20 +64,45 @@ function App() {
     return pages.find((page) => page.id === activePage);
   };
 
+  // Check if user is logged in
+  const isLoggedIn = !!localStorage.getItem("token");
+
   return (
-    <div className={`App ${showSidebar ? 'sidebar-visible' : 'sidebar-hidden'}`}>
-      <MainSection activePage={getActivePage()} onUpdatePage={updatePage} />
-      {showSidebar && (
-        <Sidebar
-          pages={pages}
-          newPage={newPage}
-          deletePage={deletePage}
-          activePage={activePage}
-          setActivePage={setActivePage}
-        />
-      )}
+    <Router>
+      <div className={`App ${showSidebar ? 'sidebar-visible' : 'sidebar-hidden'}`}>
+        <Routes>
+          {/* Public Routes */}
       
-    </div>
+        <Route path="/" element={<Login />}  />
+        <Route path="/register" element={<Register />} />
+      
+
+          {/* Protected Route */}
+          <Route 
+            path="/main" 
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <>
+                  <MainSection activePage={getActivePage()} onUpdatePage={updatePage} />
+                  {showSidebar && (
+                    <Sidebar
+                      pages={pages}
+                      newPage={newPage}
+                      deletePage={deletePage}
+                      activePage={activePage}
+                      setActivePage={setActivePage}
+                    />
+                  )}
+                </>
+              </PrivateRoute>
+            } 
+          />
+
+          {/* Redirect root to login */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
