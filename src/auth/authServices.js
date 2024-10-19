@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/auth';
+const API_URL = process.env.REACT_APP_API_URL || 'https://markdown-basic-backend.vercel.app/api/auth';
 
 const login = async (userData) => {
   const res = await fetch(`${API_URL}/login`, {
